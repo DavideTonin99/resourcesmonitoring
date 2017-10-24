@@ -72,7 +72,7 @@
     </div>
 
     <footer>
-        Davide Tonin, <a href="https://www.github.com/DavideTonin99/resourcesMonitoring" target="_blank">View the project on Github</a>
+        Davide Tonin, <a href="https://www.github.com/DavideTonin99/resourcesmonitoring" target="_blank">View the project on Github</a>
     </footer>
 </body>
 </html>
