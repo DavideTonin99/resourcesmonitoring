@@ -7,8 +7,15 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="js/setup.js"></script>
     <script src="js/load_info.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#filters-button').click( function(){
+                $('#filters-div').slideToggle('fast');
+            });
+        });
+    </script>
 </head>
 <body>
     <header>

@@ -9,9 +9,9 @@
     $table = $_GET['table'];
     $field = $_GET['field'];
 
-    $data = array();
-
     if ($field != "") $value = $_GET['value'];
+
+    $data = array();
 
     if ($table == "") {
         $data["error"] = "Select a table";
@@ -41,7 +41,6 @@
 
         $result = $conn->query($query);
         if ($result->num_rows > 0) {
-            // output data of each row
             $data["rows"] = array();
             $cont = 0;
             while($row = $result->fetch_assoc()) {
@@ -52,7 +51,7 @@
                 $cont++;
             }
         } else {
-            echo "<h3 style='text-decoration: underline;'>0 results</h3>";
+            die(json_encode(array("error"=>"0 RESULTS")));
         }
         $conn->close();
         die(json_encode($data));
