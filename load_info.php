@@ -48,7 +48,7 @@
                 $cont++;
             }
         } else {
-            die(json_encode(array("error"=>"0 RESULTS")));
+            die(json_encode(array("noresult"=>"0 RESULTS")));
         }
         $conn->close();
         die(json_encode($data));

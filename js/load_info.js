@@ -27,14 +27,16 @@ $(document).ready(function() {
 
 function processing_data(data) {
     console.log(data);
-    if (data.noresult !== undefined) {
-        $('#content').append("<div class='row'>"+data.noresult+"</div>");
-        return;
-    }
 
     if ($('#table-container').length > 0) {
         $('#table-container').remove();
     }
+
+    if (data.noresult !== undefined) {
+        $('#content').append("<div class='row'>"+data.noresult+"</div>");
+        return;
+    }
+    
     $('#content').append("<div class='row' id='table-container'><table id='result-table' class='table table-striped table-bordered'></table></div>");
 
     if (data.fields !== undefined) {
