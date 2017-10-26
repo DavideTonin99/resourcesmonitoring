@@ -27,6 +27,11 @@ $(document).ready(function() {
 
 function processing_data(data) {
     console.log(data);
+    if (data.noresult !== undefined) {
+        $('#content').append("<div class='row'>"+data.noresult+"</div>");
+        return;
+    }
+
     if ($('#table-container').length > 0) {
         $('#table-container').remove();
     }

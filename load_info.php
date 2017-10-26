@@ -1,10 +1,7 @@
 <?php
     header('Content-Type: application/json');
 
-    define("HOST", "");
-    define("DB_USER", "");
-    define("DB_PASSWORD", "");
-    define("DB_NAME", "");
+    include('conf.php');
 
     $table = $_GET['table'];
     $field = $_GET['field'];
