@@ -32,10 +32,6 @@
                         <?php
                             include('tables_list.php');
                         ?>
-                        <!--<option value="network">Network</option>
-                        <option value="os">Operating System</option>
-                        <option value="usb">Usb</option>
-                        <option value="product">Product</option>-->
                     </select>
                 </div>
                 <hr />

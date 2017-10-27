@@ -15,6 +15,7 @@ $(document).ready(function() {
                 if (data.error !== undefined & data.error !== "") {
                     alert('Error '+data.error);
                 } else {
+                    page_data = data;
                     processing_data(data);
                     create_field_filter_list(data);
                 }
@@ -26,8 +27,6 @@ $(document).ready(function() {
 });
 
 function processing_data(data) {
-    console.log(data);
-
     if ($('#table-container').length > 0) {
         $('#table-container').remove();
     }
@@ -36,7 +35,7 @@ function processing_data(data) {
         $('#content').append("<div class='row'>"+data.noresult+"</div>");
         return;
     }
-    
+
     $('#content').append("<div class='row' id='table-container'><table id='result-table' class='table table-striped table-bordered'></table></div>");
 
     if (data.fields !== undefined) {
@@ -59,6 +58,13 @@ function processing_data(data) {
             $('#result-table').append(table_row);
         });
     }
+
+    if ($('#json-export').length > 0) {
+        $('#json-export').parent('div').remove();
+    }
+    current_date = new Date();
+    current_table = $('#table-select').val();
+    json_export_conf(JSON.stringify(data), current_table+"_"+current_date.getDay()+"_"+current_date.getMonth()+"_"+current_date.getFullYear()+'.json', 'text/plain');
 }
 
 function create_field_filter_list(data) {
@@ -72,4 +78,9 @@ function create_field_filter_list(data) {
             $('#fields-list').append("<option value='"+el+"'>"+el+"</option>");
         });
     }
+}
+
+function json_export_conf(text, name, type) {
+    var file = new Blob([text], {type: type});
+    $("<div class='row text-center'><hr><a id='json-export' href='"+URL.createObjectURL(file)+"' target='_blank' download='"+name+"'>EXPORT TO JSON</a></div>").insertAfter('#table-container');
 }
