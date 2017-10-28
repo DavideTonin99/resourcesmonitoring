@@ -82,5 +82,5 @@ function create_field_filter_list(data) {
 
 function json_export_conf(text, name, type) {
     var file = new Blob([text], {type: type});
-    $("<div class='row text-center'><hr><a id='json-export' href='"+URL.createObjectURL(file)+"' target='_blank' download='"+name+"'>EXPORT TO JSON</a></div>").insertAfter('#table-container');
+    $("<div class='row text-center'><a id='json-export' href='"+URL.createObjectURL(file)+"' target='_blank' download='"+name+"'>EXPORT TO JSON</a></div>").insertAfter('#table-container');
 }

@@ -34,7 +34,6 @@
                         ?>
                     </select>
                 </div>
-                <hr />
                 <div class="col-sm-12 text-center">
                     <button id="filters-button" type="button" class="btn btn-warning">+ FILTERS</button>
                 </div>
@@ -49,11 +48,13 @@
                 </div>
             </form>
         </div>
-        <hr />
     </div>
 
     <footer>
-        Davide Tonin, <a href="https://www.github.com/DavideTonin99/resourcesmonitoring" target="_blank">View the project on Github</a>
+      <p>
+        Coded by Davide Tonin, Project available on
+        <a href="https://www.github.com/DavideTonin99/resourcesmonitoring" target="_blank">Github</a>
+      </p>
     </footer>
 </body>
 </html>
