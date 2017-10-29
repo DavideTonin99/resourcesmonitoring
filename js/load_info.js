@@ -1,5 +1,7 @@
+var table_changed;
+
 $(document).ready(function() {
-    $('#get-result-button').on("click change", function() {
+    $('#get-result-button').click(function() {
         var table= $('#table-select').val();
         var field = $('#filter-field').val();
         var value = $('#filter-value').val();
@@ -24,6 +26,10 @@ $(document).ready(function() {
                 alert("Failed");
             });
     });
+
+    $('#table-select').change(function(){
+        table_changed = true;
+    });
 });
 
 function processing_data(data) {
@@ -34,6 +40,11 @@ function processing_data(data) {
     if (data.noresult !== undefined) {
         $('#content').append("<div class='row'>"+data.noresult+"</div>");
         return;
+    }
+
+    if (table_changed === true) {
+        $('input').val("");
+        table_changed = false;
     }
 
     $('#content').append("<div class='row' id='table-container'><table id='result-table' class='table table-striped table-bordered'></table></div>");
