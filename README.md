@@ -11,6 +11,6 @@
 - PHP (tested on both 5.x and 7.x)
 - Database (ex. MySQL)
 - You can also connect to a remote database changing the 'DB_HOST' variable in the configuration file.
-
+---
 #### Test View
 ![Test View](./doc/testview.png)
