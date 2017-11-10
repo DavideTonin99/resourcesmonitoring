@@ -28,12 +28,12 @@
 
         $result = $conn->query($query);
         if ($result->num_rows > 0) {
-            $data["rows"] = array();
+            $data[$table] = array();
             $cont = 0;
             while($row = $result->fetch_assoc()) {
-                $data["rows"][$cont] = array();
+                $data[$table][$cont] = array();
                 foreach ($row as $key => $value) {
-                    $data["rows"][$cont][$key] = utf8_encode($value);
+                    $data[$table][$cont][$key] = utf8_encode($value);
                 }
                 $cont++;
             }
