@@ -39,17 +39,19 @@ function processing_data(data) {
 
     $('#content').append("<div class='row' id='table-container'><table id='result-table' class='table table-striped table-bordered'></table></div>");
 
+    current_table = $('#table-select').val();
+
     thead_columns = "";
     keys = [];
-    for (key in data.rows[0]) {
+    for (key in data[current_table][0]) {
         thead_columns += '<th>'+key.toUpperCase()+'</th>';
         keys.push(key);
     }
 
     $('#result-table').append('<tr>'+thead_columns+'</tr>');
 
-    $(data.rows).each( function(index) {
-        process_values = data.rows[index.toString()];
+    $(data[current_table]).each( function(index) {
+        process_values = data[current_table][index.toString()];
         row = "";
         for (i=0;i<keys.length;i++) {
             row += '<td>'+process_values[keys[i]]+'</td>';
@@ -62,7 +64,6 @@ function processing_data(data) {
     }
 
     current_date = new Date();
-    current_table = $('#table-select').val();
     json_export_conf(JSON.stringify(data, null, 4), current_table+"_"+current_date.getDay()+"_"+current_date.getMonth()+"_"+current_date.getFullYear()+'.json', 'text/plain');
 }
 
