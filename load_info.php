@@ -22,16 +22,6 @@
             die(json_encode($data));
         }
 
-        // load table fields
-        $query = "SHOW COLUMNS FROM $table";
-        $result = $conn->query($query);
-        if ($result->num_rows > 0) {
-            $data["fields"] = array();
-            while($row = $result->fetch_assoc()){
-                array_push($data["fields"], $row["Field"]);
-            }
-        }
-
         // load table rows
         if ($field != "" && $value != "") $query = "SELECT * FROM $table WHERE $field LIKE '%$value%'";
         else $query = "SELECT * FROM $table;";
@@ -42,13 +32,13 @@
             $cont = 0;
             while($row = $result->fetch_assoc()) {
                 $data["rows"][$cont] = array();
-                foreach ($row as $value) {
-                    array_push($data["rows"][$cont],$value);
+                foreach ($row as $key => $value) {
+                    $data["rows"][$cont][$key] = utf8_encode($value);
                 }
                 $cont++;
             }
         } else {
-            die(json_encode(array("noresult"=>"0 RESULTS")));
+            die(json_encode(array("noresult"=>"0 Persone trovate")));
         }
         $conn->close();
         die(json_encode($data));

@@ -39,30 +39,28 @@ function processing_data(data) {
 
     $('#content').append("<div class='row' id='table-container'><table id='result-table' class='table table-striped table-bordered'></table></div>");
 
-    if (data.fields !== undefined) {
-        var table_row = "<tr>";
-        $('#result-table').append("<tr>");
-        $(data.fields).each( function(index, element){
-            table_row += "<th>"+element+"</th>";
-        });
-        table_row += "</tr>"
-        $('#result-table').append(table_row);
+    thead_columns = "";
+    keys = [];
+    for (key in data.rows[0]) {
+        thead_columns += '<th>'+key.toUpperCase()+'</th>';
+        keys.push(key);
     }
 
-    if (data.rows !== undefined) {
-        $(data.rows).each( function(i, row) {
-            var table_row = "<tr>";
-            $(row).each( function(index, value) {
-               table_row += "<td>"+value+"</td>";
-            });
-            table_row += "</tr>";
-            $('#result-table').append(table_row);
-        });
-    }
+    $('#result-table').append('<tr>'+thead_columns+'</tr>');
+
+    $(data.rows).each( function(index) {
+        process_values = data.rows[index.toString()];
+        row = "";
+        for (i=0;i<keys.length;i++) {
+            row += '<td>'+process_values[keys[i]]+'</td>';
+        }
+        $('#result-table').append('<tr>'+row+'</tr>');
+    });
 
     if ($('#json-export').length > 0) {
         $('#json-export').parent('div').remove();
     }
+
     current_date = new Date();
     current_table = $('#table-select').val();
     json_export_conf(JSON.stringify(data), current_table+"_"+current_date.getDay()+"_"+current_date.getMonth()+"_"+current_date.getFullYear()+'.json', 'text/plain');
