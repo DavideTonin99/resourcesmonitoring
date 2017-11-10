@@ -63,7 +63,7 @@ function processing_data(data) {
 
     current_date = new Date();
     current_table = $('#table-select').val();
-    json_export_conf(JSON.stringify(data), current_table+"_"+current_date.getDay()+"_"+current_date.getMonth()+"_"+current_date.getFullYear()+'.json', 'text/plain');
+    json_export_conf(JSON.stringify(data, null, 4), current_table+"_"+current_date.getDay()+"_"+current_date.getMonth()+"_"+current_date.getFullYear()+'.json', 'text/plain');
 }
 
 function create_field_filter_list(data) {
